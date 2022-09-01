@@ -8,6 +8,7 @@ def KMP(str1, str2):
         if str1[i1] == str2[i2]:
             i1 += 1
             i2 += 1
+        # 由于由这个判断条件，next[0]的-1永远不会被取到
         elif i2 == 0:
             i1 += 1
         else:
@@ -19,10 +20,11 @@ def KMP(str1, str2):
         return -1
 
 
+# 前缀函数
 def getNextArray(str):
     if len(str) == 1:
         return [-1]
-    next = [None] * len(str)
+    next = [0] * len(str)
     next[0] = -1
     next[1] = 0
     i = 2
@@ -42,5 +44,6 @@ def getNextArray(str):
 
 if __name__ == "__main__":
     str1 = 'abbcabbtd'
-    str2 = 'abbs'
-    print(KMP(str1, str2))
+    str2 = 'ababat'
+    # print(KMP(str1, str2))
+    print(getNextArray(str2))
